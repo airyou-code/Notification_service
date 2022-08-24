@@ -15,13 +15,13 @@ class Mailing(models.Model):
 
 class Client(models.Model):
     phone_regex = RegexValidator(
-        regex=r"^\+?7?\d{7,11}$",
-        message="Phone number must be entered in the format: '7999999999'. Up to 11 digits not allowed."
+        regex=r"^\+?7?\d{11}$",
+        message="Phone number in 7XXXXXXXXXX format (X is a digit from 0 to 9), Up to 11 digits not allowed"
     )
 
-    phone_number = models.CharField( verbose_name="Phone number",validators=[phone_regex], max_length=11,blank=True)
-    operator = models.IntegerField(verbose_name="Operator code",validators=[MaxValueValidator(999), MinValueValidator(900)])
-    tag = models.CharField(verbose_name="Tag", max_length=50)
+    phone_number = models.CharField( "Phone number",validators=[phone_regex], max_length=11,blank=True)
+    operator = models.IntegerField("Operator code",validators=[MaxValueValidator(999), MinValueValidator(900)])
+    tag = models.CharField("Tag", max_length=50)
     timezone = models.CharField(max_length=32, choices=tuple(zip(pytz.all_timezones, pytz.all_timezones)), default="UTC")
 
 
