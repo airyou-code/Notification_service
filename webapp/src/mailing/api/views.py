@@ -61,7 +61,7 @@ class MailingAPIView(ModelViewSet):
         count = len(clients)
 
         if mailing.start_time <= now_time:
-            if mailing.end_time <= now_time:
+            if mailing.end_time >= now_time:
                 send_messages.delay(mailing.id)
                 return Response(
                     {
