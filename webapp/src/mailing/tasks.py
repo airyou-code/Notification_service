@@ -2,18 +2,11 @@ from celery import Celery
 from mailing_service.celery import app
 from celery import shared_task
 from .models import Client, Mailing, Message
-from django.shortcuts import get_object_or_404
 
 import requests
 import time
 import datetime
 import json
-
-
-@app.task
-def add(x, y):
-    print(f'{x} + {y} = {x+y}')
-    return True
 
 @shared_task
 def send_messages(mailing_id):
@@ -53,11 +46,12 @@ def send_messages(mailing_id):
                 })
 
         url = f"https://probe.fbrq.cloud/v1/send/{message.id}"
-        r = requests.post(url=url, headers=headers, data=data)
+        request = requests.post(url=url, headers=headers, data=data,timeout=10)
         # print()
-        print(f"{message.id}:r  +7{int(client.phone_number[1:])}, {r}, ")
-        time.sleep(2)
-        message.sending_status = True
+        print(f"{message.id}:  +7{int(client.phone_number[1:])}, Response:{request.status_code}, ")
+        # time.sleep(2)
+        if request.status_code == 200:
+            message.sending_status = True
         message.save()
 
     # mailing.end_time = datetime.datetime.now(mailing.start_time.tzinfo)
@@ -65,8 +59,3 @@ def send_messages(mailing_id):
     # Client.objects.create(phone_number="79156850667", operator="915", tag="YRA")
     print(f"yes:{mailing_id}")
     
-
-@app.task
-def ad():
-    print('sdksdfdfsd')
-    return True

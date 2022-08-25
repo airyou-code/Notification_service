@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'django_celery_beat',
-
 
     'main',
     'mailing',
@@ -84,10 +84,21 @@ WSGI_APPLICATION = 'mailing_service.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR /  'db.sqlite3',
+        'NAME': BASE_DIR / 'db' /  'db.sqlite3',
     }
 }
 
+CELERY_BROKER_URL = 'redis://redis:6379'
+
+# RABBITMQ = {
+#     "PROTOCOL": "amqp", # in prod change with "amqps"
+#     "HOST": os.getenv("RABBITMQ_HOST", "localhost"),
+#     "PORT": os.getenv("RABBITMQ_PORT", 5672),
+#     "USER": os.getenv("RABBITMQ_USER", "guest"),
+#     "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
+# }
+
+# CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}"
 
 
 # Password validation

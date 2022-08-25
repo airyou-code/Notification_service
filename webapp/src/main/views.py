@@ -12,11 +12,5 @@ def index(request):
     requests = request
     index = requests.get(url=url, params=params).json()
     # os.environ.get('HOSTNAME')
-    clients = Client.objects.get(
-                pk=2
-            )
-    clients.tag = "[][][][][]"
-    clients.save()
-    
-    print(clients)
+
     return render(request, 'main/index.html', {"a":index})

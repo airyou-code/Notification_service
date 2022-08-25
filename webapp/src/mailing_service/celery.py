@@ -1,11 +1,10 @@
 import os
-from celery.schedules import crontab
-from celery import Celery
 
+from celery import Celery
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mailing_service.settings')
 
-app = Celery('mailing_service', broker='pyamqp://guest@localhost//')
+app = Celery('mailing_service')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 # celery -A mailing_service beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
@@ -18,4 +17,4 @@ app.autodiscover_tasks()
 
 @app.task(bind=True)
 def debug_task(self):
-    print('Request: {0!r}'.format(self.request))
+    print(f'Request: {self.request!r}')
