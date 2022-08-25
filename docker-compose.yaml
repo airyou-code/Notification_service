@@ -5,7 +5,14 @@ services:
   redis:
     image: redis
     restart: always
-  
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
   webapp:
     restart: always
@@ -13,17 +20,25 @@ services:
       context: ./webapp
     ports: 
       - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
     command: [ "python3", "./src/manage.py", "runserver", "0.0.0.0:8000"]
-    volumes: 
-      - ./db:/app/src/db   
+    # volumes: 
+    #   - ./db:/app/src/db   
 
 
   worker:
     restart: always
     build: 
       context: ./webapp
-    volumes: 
-      - ./db:/app/src/db
+    # volumes: 
+    #   - ./db:/app/src/db
+    depends_on:
+      - db
     command: ['celery','--workdir=./src',  '-A', 'mailing_service', 'worker', '-l', 'INFO']
 
 
@@ -31,8 +46,10 @@ services:
     restart: always
     build: 
       context: ./webapp
-    volumes: 
-      - ./db:/app/src/db
+    depends_on:
+      - db
+    # volumes: 
+    #   - ./db:/app/src/db
     command: ['celery', '--workdir=./src', '-A', 'mailing_service', 'beat', '-l', 'INFO', '--scheduler', 'django_celery_beat.schedulers:DatabaseScheduler']
 
   
