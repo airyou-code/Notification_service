@@ -26,7 +26,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
-    command: [ "python3", "./src/manage.py", "runserver", "0.0.0.0:8000"]
+    command: ["./start.sh"]
+    # command: [ "python3", "./src/manage.py", "runserver", "0.0.0.0:8000"]
     # volumes: 
     #   - ./db:/app/src/db   
 
