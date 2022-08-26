@@ -1,6 +1,5 @@
 <h1 align="center">Notification Service </h1>
-<a href="https://github.com/airyou-code/Notification_service">by Artem Kirillov</a>
-_by **[Artem Kirillov]([https://baremetrics.com](https://github.com/airyou-code/Notification_service)**_
+_by **[Artem Kirillov](https://baremetrics.com](https://github.com/airyou-code/Notification_service)**_
 ## Description
 - It is necessary to implement methods for creating a new mailing list, viewing the created ones and
   obtaining statistics on completed mailings.
