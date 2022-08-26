@@ -7,6 +7,7 @@
 
 # Stack technology
 - Django
+- RestAPI
 - Celery
 - Postgres
 - Redis
@@ -23,7 +24,7 @@ Commands for creating an admin:
 Go to the admin panel:
 - `http://127.0.0.1:8000/admin/`
 
-## Usage
+## Usage API
 
 ### Client
 creating, editing, or viewing a list of clients
@@ -48,7 +49,7 @@ json example:
 ```
 
 ### Mailing
-creating, editing, or viewing a list of mailings
+creating, editing, or viewing a list of mail
 
 ### Mailing logic
 - After creating a new mailing list, if the current time is greater than the start time and less
