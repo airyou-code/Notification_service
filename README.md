@@ -6,85 +6,64 @@
 Redesigned and Wrapped for Vue.js by [Divyansh Tripathi](https://silentlad.com)
 
 
-
-<p align="center">
-<img src="https://media.giphy.com/media/VFvkCMvXvlTNAGuaZm/giphy.gif">
-</p>
+• Необходимо реализовать методы создания новой рассылки, просмотра созданных и получения статистики по выполненным рассылкам.
+• Реализовать сам сервис отправки уведомлений на внешнее API.
+• Опционально вы можете выбрать любое количество дополнительных пунктов описанных после основного.
+  Для успешного принятия задания как выполненного достаточно корректной и рабочей реализации требований по основной части, но дополнительные пункты помогут вам продемонстрировать ваши навыки в смежных технологиях.
 
 # Installation
+Need to install docker-compose!!!
+`git clone https://github.com/airyou-code/Notification_service.git `
+`docker-compose up --build`
 
-`npm i --save vue2-baremetrics-calendar`
+Commands for creating an admin:
+`docker-compose exec webapp python3 ./src/manage.py createsuperuser`
+
+Go to the admin panel:
+`http://127.0.0.1:8000/admin/`
 
 ## Usage
 
-### Global Usage
+### Client
+creating, editing, or viewing a list of clients
+`
+GET http://127.0.0.1:8000/api/
+GET http://127.0.0.1:8000/api/client/
+GET http://127.0.0.1:8000/api/client/1
+GET http://127.0.0.1:8000/api/client/?tag=a2&operator=914
+POST http://127.0.0.1:8000/api/client/ + json
+PUT http://127.0.0.1:8000/api/client/1 + json
+`
 
-Global Registeration via Vue.use() method.
-
-```js
-// main.js
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-// import the plugin
-import Calendar from "vue2-baremetrics-calendar";
-
-Vue.config.productionTip = false;
-
-// use the plugin
-Vue.use(Calendar);
-
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount("#app");
+json example:
+```json
+{    
+    "phone_number": "79999999999",
+    "operator": 999,
+    "tag": "string",
+    "timezone": "UTC"
+}
 ```
 
-Once registered you can use the component in its default settings with as follows:-
+### Mailing
+creating, editing, or viewing a list of clients
+`
+GET http://127.0.0.1:8000/api/
+GET http://127.0.0.1:8000/api/mailing/
+GET http://127.0.0.1:8000/api/mailing/1
+POST http://127.0.0.1:8000/api/mailing/ + json
+PUT http://127.0.0.1:8000/api/mailing/1 + json
+`
 
-```html
-<Calendar
-  type="double"
-  @rangeEdit="processDateRange()"
-  elementName="doubleRangePicker"
-/>
-
-<Calendar
-  type="single"
-  @dateEdit="processDate()"
-  elementName="singleRangePicker"
-/>
-```
-
-**REMEMBER _elementName_ is the only required prop and it should be different for each datepicker in your component**
-
-```html
-<template>
-  <div id="app">
-    <Calendar
-      @rangeEdit="processOutput"
-      type="double"
-      elementName="otherRangePicker"
-    />
-
-    <Calendar
-      @dateEdit="processOutput"
-      type="single"
-      elementName="primaryRangePicker"
-    />
-  </div>
-</template>
-
-<script>
-  import Calendar from "./components/Calendar";
-  export default {
-    components: {
-      Calendar
+json example:
+```json
+{    
+    "clients": {
+        "tag": "a2",
+        "operator": 999
     },
-    methods: {
-      processOutput(output) {
-        console.log(output);
-      }
-    }
-  };
-</script>
+    "start_time": "2022-08-26T11:53:37+02:00",
+    "end_time": "2022-08-27T11:53:38+02:00",
+    "text": "Company X has a new promotion !!!!!"
+}
+```
