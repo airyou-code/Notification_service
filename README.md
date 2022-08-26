@@ -48,7 +48,7 @@ json example:
 ```
 
 ### Mailing
-creating, editing, or viewing a list of clients
+creating, editing, or viewing a list of mailings
 
 ### Mailing logic
 - After creating a new mailing list, if the current time is greater than the start time and less
