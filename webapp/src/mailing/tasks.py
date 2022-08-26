@@ -50,5 +50,5 @@ def send_messages(mailing_id):
         if request.status_code == 200:
             message.sending_status = True
         message.save()
-    print(f"Mailing id - {mailing_id}: send {len(Message.objects.filter(sending_status=True, mailing=mailing))}/{len(clients)}")
+    print(f"Mailing id-{mailing_id}: send {len(Message.objects.filter(sending_status=True, mailing=mailing))}/{len(clients)}")
     

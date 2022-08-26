@@ -27,9 +27,9 @@ class Client(models.Model):
 
 class Message(models.Model):
     client = models.ForeignKey(Client, verbose_name="Client", on_delete=models.CASCADE)
-    mailing = models.ForeignKey(Mailing, verbose_name="Mailing List", on_delete=models.CASCADE)
+    mailing = models.ForeignKey(Mailing, verbose_name="Mailing", on_delete=models.CASCADE)
     sending_status = models.BooleanField("Status", default=False)
-    start_date = models.DateTimeField(verbose_name="Start Date", auto_now=True)
+    start_date = models.DateTimeField(verbose_name="Start time", auto_now=True)
 
     def __str__(self):
         return f"Message id {self.pk} in mobile {self.client.phone_number} "

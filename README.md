@@ -1,5 +1,5 @@
-<h1 align="center">Notification Service</h1>
-
+<h1 align="center">Notification Service </h1>
+by **[Artem Kirillov](https://github.com/airyou-code/Notification_service)**
 ## Description
 - It is necessary to implement methods for creating a new mailing list, viewing the created ones and
   obtaining statistics on completed mailings.

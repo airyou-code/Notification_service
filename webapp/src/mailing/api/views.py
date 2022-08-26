@@ -1,6 +1,6 @@
 import datetime
 from rest_framework import generics
-from rest_framework.viewsets import  ModelViewSet
+from rest_framework.viewsets import  ModelViewSet, ReadOnlyModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,13 +8,14 @@ from celery.result import AsyncResult
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from mailing.tasks import send_messages
-from ..models import Client, Mailing
-from .serializers import ClientSerializer, MailingSerializer
+from ..models import Client, Mailing, Message
+from .serializers import ClientSerializer, MailingSerializer, MessageSerializer
 
 
-class ClientAPIList(generics.ListCreateAPIView):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+class MessageAPIList(ReadOnlyModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    filterset_fields = ['client', 'mailing']
 
 class ClientAPIView(ModelViewSet):
     queryset = Client.objects.all()
@@ -77,18 +78,17 @@ class MailingAPIView(ModelViewSet):
 
         else:
             schedule, created = ClockedSchedule.objects.get_or_create(clocked_time=mailing.start_time)
-            scheduled_task = PeriodicTask.objects.create(
-                            one_off=True,  
-                            clocked=schedule,
-                            name="Рассылка {} в ожидaнии до {}".format(
-                                mailing.id, schedule.clocked_time
-                            ),
-                            task="mailing.tasks.send_messages",
-                            args=[mailing.id],
+            task = PeriodicTask.objects.create(
+                one_off=True,  
+                clocked=schedule,
+                name=f"Mailing {mailing.id} waiting for up to {schedule.clocked_time}",
+                task="mailing.tasks.send_messages",
+                args=[mailing.id],
             )
 
             return Response(
                 {
                     "message": f"Mailing ({count} cliemts) has been successfully registered and is waiting!",
+                    "start": f"{schedule.clocked_time}",
                     "clients": count
                 },status=status.HTTP_201_CREATED,)
