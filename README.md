@@ -40,7 +40,9 @@ Go to the admin panel:
 ### Client
 creating, editing, or viewing a list of clients
 
--- `GET http://127.0.0.1:8000/api/`
+<p>
+`GET http://127.0.0.1:8000/api/`
+</p>
 -- `GET http://127.0.0.1:8000/api/client/`
 -- `GET http://127.0.0.1:8000/api/client/1`
 -- `GET http://127.0.0.1:8000/api/client/?tag=a2&operator=914`
