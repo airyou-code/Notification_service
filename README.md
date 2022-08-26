@@ -1,25 +1,16 @@
 <h1 align="center">Notification Service</h1>
-<p align="center">
 
 ## Description
 - It is necessary to implement methods for creating a new mailing list, viewing the created ones and
   obtaining statistics on completed mailings.
 - Implement the service itself for sending notifications to an external API.
-## Mailing logic
 
-- After creating a new mailing list, if the current time is greater than the start time and less
-  end time - all clients who have been selected from the directory must be selected
-  they match the values of the filter specified in this newsletter and sending is started for all these clients.
-- If a mailing list is created with a start time in the future, sending should start
-  automatically upon the occurrence of this time without additional actions on the
-  part of the system user.
-- Statistics should be collected in the course of sending messages
-  (see the description of the "message" entity above) for each message for subsequent generation of reports.
-- An external service that accepts the sent messages can take a long time
-  to process the request, to respond with incorrect data, for some time not at all
-  accept requests. It is necessary to implement the correct handling of such
-  errors. Problems with an external service should not affect the stability of work
-  the mailing service being developed.
+# Stack technology
+- Django
+- Celery
+- Postgres
+- Redis
+- Docker
 
 # Installation
 Need to install docker-compose!!!
@@ -59,12 +50,27 @@ json example:
 ### Mailing
 creating, editing, or viewing a list of clients
 
+### Mailing logic
+- After creating a new mailing list, if the current time is greater than the start time and less
+    end time - all clients who have been selected from the directory must be selected
+    they match the values of the filter specified in this newsletter and sending is started for all these clients.
+- If a mailing list is created with a start time in the future, sending should start
+    automatically upon the occurrence of this time without additional actions on the
+    part of the system user.
+- Statistics should be collected in the course of sending messages
+    (see the description of the "message" entity above) for each message for subsequent generation of reports.
+- An external service that accepts the sent messages can take a long time
+    to process the request, to respond with incorrect data, for some time not at all
+    accept requests. It is necessary to implement the correct handling of such
+    errors. Problems with an external service should not affect the stability of work
+    the mailing service being developed.
+      
+
 - `GET http://127.0.0.1:8000/api/`
 - `GET http://127.0.0.1:8000/api/mailing/`
 - `GET http://127.0.0.1:8000/api/mailing/1`
 - `POST http://127.0.0.1:8000/api/mailing/` + json
 - `PUT http://127.0.0.1:8000/api/mailing/1` + json
-
 
 json example:
 ```json
