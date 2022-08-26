@@ -3,9 +3,8 @@
  <a href="https://github.com/airyou-code" target="_blank">github</a> 
 
 ## Description
-- It is necessary to implement methods for creating a new mailing list, viewing the created ones and
-  obtaining statistics on completed mailings.
-- Implement the service itself for sending notifications to an external API.
+- The project was created as a test task.
+- The task was to implement a mailing service that can be managed using the API
 
 # Stack technology
 - Django
