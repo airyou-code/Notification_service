@@ -1,7 +1,4 @@
 <h1 align="center">Notification Service</h1>
-
----
-
 <p align="center">
 
 ## Description
