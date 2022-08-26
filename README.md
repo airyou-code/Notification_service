@@ -1,5 +1,7 @@
 <h1 align="center">Notification Service </h1>
-_A Vue.js wrapper for the beautiful date-range picker made by the **[Baremetrics](https://baremetrics.com)** team._
+
+ <a href="https://github.com/airyou-code" target="_blank">github</a> 
+
 ## Description
 - It is necessary to implement methods for creating a new mailing list, viewing the created ones and
   obtaining statistics on completed mailings.
