@@ -26,14 +26,14 @@
 
 # Installation
 Need to install docker-compose!!!
-`git clone https://github.com/airyou-code/Notification_service.git `
-`docker-compose up --build`
+- `git clone https://github.com/airyou-code/Notification_service.git `
+- `docker-compose up --build`
 
 Commands for creating an admin:
-`docker-compose exec webapp python3 ./src/manage.py createsuperuser`
+- `docker-compose exec webapp python3 ./src/manage.py createsuperuser`
 
 Go to the admin panel:
-`http://127.0.0.1:8000/admin/`
+- `http://127.0.0.1:8000/admin/`
 
 ## Usage
 
@@ -62,11 +62,11 @@ json example:
 ### Mailing
 creating, editing, or viewing a list of clients
 
-`GET http://127.0.0.1:8000/api/`
-`GET http://127.0.0.1:8000/api/mailing/`
-`GET http://127.0.0.1:8000/api/mailing/1`
-`POST http://127.0.0.1:8000/api/mailing/` + json
-`PUT http://127.0.0.1:8000/api/mailing/1` + json
+- `GET http://127.0.0.1:8000/api/`
+- `GET http://127.0.0.1:8000/api/mailing/`
+- `GET http://127.0.0.1:8000/api/mailing/1`
+- `POST http://127.0.0.1:8000/api/mailing/` + json
+- `PUT http://127.0.0.1:8000/api/mailing/1` + json
 
 
 json example:
