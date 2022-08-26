@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!)8++meqe&m#^qi@j1y2^o!r+7=_(92$^4cqm6%d#qbx^5pdn!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -98,16 +98,6 @@ DATABASES = {
 
 CELERY_BROKER_URL = 'redis://redis:6379'
 
-# RABBITMQ = {
-#     "PROTOCOL": "amqp", # in prod change with "amqps"
-#     "HOST": os.getenv("RABBITMQ_HOST", "localhost"),
-#     "PORT": os.getenv("RABBITMQ_PORT", 5672),
-#     "USER": os.getenv("RABBITMQ_USER", "guest"),
-#     "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
-# }
-
-# CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}"
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -130,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
 
     ],
     'DEFAULT_FILTER_BACKENDS': [
