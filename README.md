@@ -1,6 +1,6 @@
 <h1 align="center">Notification Service </h1>
 
- <a href="https://github.com/airyou-code" target="_blank">github</a> 
+<a href="https://github.com/airyou-code/Notification_service" target="_blank">github</a> 
 
 ## Description
 - The project was created as a test task.
@@ -59,14 +59,6 @@ creating, editing, or viewing a list of mail
 - If a mailing list is created with a start time in the future, sending should start
     automatically upon the occurrence of this time without additional actions on the
     part of the system user.
-- Statistics should be collected in the course of sending messages
-    (see the description of the "message" entity above) for each message for subsequent generation of reports.
-- An external service that accepts the sent messages can take a long time
-    to process the request, to respond with incorrect data, for some time not at all
-    accept requests. It is necessary to implement the correct handling of such
-    errors. Problems with an external service should not affect the stability of work
-    the mailing service being developed.
-      
 
 - `GET http://127.0.0.1:8000/api/`
 - `GET http://127.0.0.1:8000/api/mailing/`
@@ -85,4 +77,23 @@ json example:
     "end_time": "2022-08-27T11:53:38+02:00",
     "text": "Company X has a new promotion !!!!!"
 }
+```
+
+### Message
+Viewing only
+
+- `GET http://127.0.0.1:8000/api/message/`
+- `GET http://127.0.0.1:8000/api/message/1`
+- `GET http://127.0.0.1:8000/api/message/?mailing=2`
+
+request `GET http://127.0.0.1:8000/api/message/5`
+Response example:
+```json
+    {
+        "id": 5,
+        "sending_status": true,
+        "start_date": "2022-08-24T14:23:12.996531+02:00",
+        "client": 1,
+        "mailing": 2
+    }
 ```
