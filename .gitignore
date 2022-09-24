@@ -1,2 +1,10 @@
 data
+webapp/src/mailing/__pycache__
+webapp/src/mailing_service/__pycache__
+webapp/src/main/__pycache__
+webapp/src/user/__pycache__
+webapp/src/user/migrations/__pycache__
+webapp/src/main/migrations/__pycache__
+webapp/src/mailing/__pycache__
+webapp/src/mailing/migrations/__pycache__
 .vscode
