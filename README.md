@@ -3,8 +3,7 @@
 <a href="https://github.com/airyou-code/Notification_service" target="_blank">github</a> 
 
 ## Description
-- The project was created as a test task.
-- The task was to implement a mailing service that can be managed using the API
+- The project was to implement a mailing service that can be managed using the API
 
 # Stack technology
 - Django
