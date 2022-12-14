@@ -1,10 +1,8 @@
 import datetime
-from rest_framework import generics
 from rest_framework.viewsets import  ModelViewSet, ReadOnlyModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
-from celery.result import AsyncResult
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from mailing.tasks import send_messages

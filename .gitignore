@@ -7,4 +7,5 @@ webapp/src/user/migrations/__pycache__
 webapp/src/main/migrations/__pycache__
 webapp/src/mailing/__pycache__
 webapp/src/mailing/migrations/__pycache__
+webapp/src/mailing/api/__pycache__
 .vscode
